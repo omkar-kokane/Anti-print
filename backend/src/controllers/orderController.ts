@@ -345,6 +345,11 @@ export const updateOrderStatus = async (req: AuthRequest, res: Response): Promis
       return;
     }
 
+    if (order.paymentStatus !== 'PAID') {
+      res.status(400).json({ message: 'Cannot update status of an unpaid order.' });
+      return;
+    }
+
     order.orderStatus = status;
     await order.save();
 

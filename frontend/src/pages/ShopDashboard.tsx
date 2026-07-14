@@ -347,7 +347,7 @@ const ShopDashboard = () => {
   };
 
   const filteredOrders = orders.filter(o => {
-    if (activeTab === 'active') return ['QUEUED', 'PRINTING', 'READY'].includes(o.orderStatus);
+    if (activeTab === 'active') return ['QUEUED', 'PRINTING', 'READY'].includes(o.orderStatus) && o.paymentStatus === 'PAID';
     return ['COMPLETED', 'CANCELLED'].includes(o.orderStatus);
   });
 
